@@ -37,3 +37,15 @@ context "MPlayer::Player with screenshots enabled" do
   end
   asserts("new :screenshot") { MPlayer::Slave.new('test/test.mp3', :screenshot => true) }
 end
+
+context "MPlayer::Player file with space" do
+  setup do
+    setup_with_location("test/test space.mp3")
+  end
+  asserts("invalid file") { MPlayer::Slave.new('boooger') }.raises ArgumentError,"Invalid File"
+  asserts_topic.assigns(:file)
+  asserts_topic.assigns(:pid)
+  asserts_topic.assigns(:stdin)
+  asserts_topic.assigns(:stdout)
+  asserts_topic.assigns(:stderr)
+end
