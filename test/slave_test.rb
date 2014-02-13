@@ -1,7 +1,7 @@
 require File.expand_path("teststrap", File.dirname(__FILE__))
 
 def setup_with_location(location = "test/test.mp3")
-  mock(Open4).popen4('/usr/bin/mplayer -slave -quiet "#{location}"') { [true,true,true,true] }.any_times
+  mock(Open4).popen4("/usr/bin/mplayer -slave -quiet \"#{location}\"") { [true,true,true,true] }.any_times
   stub(true).gets { "playback" }
   MPlayer::Slave.new(location)
 end
