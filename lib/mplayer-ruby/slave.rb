@@ -15,7 +15,7 @@ module MPlayer
       unless File.exists?(file) || !!(file =~ URI::regexp)
         raise ArgumentError,"Invalid File"
       end
-      options[:path] ||= '/usr/bin/mplayer'
+      options[:path] ||= 'mplayer'
       @file = file
 
       mplayer_options = "-slave -quiet"
