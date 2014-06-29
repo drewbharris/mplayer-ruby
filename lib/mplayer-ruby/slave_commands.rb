@@ -131,7 +131,7 @@ module MPlayer
         raise ArgumentError,"Invalid File"
       end
       switch = (append == :append ? 1 : 0)
-      command "loadfile #{file} #{switch}"
+      command "loadfile \"#{file}\" #{switch}"
     end
 
     # Loads the playlist into MPlayer
@@ -142,7 +142,7 @@ module MPlayer
         raise ArgumentError,"Invalid File"
       end
       switch = (append == :append ? 1 : 0)
-      command "loadlist #{file} #{switch}"
+      command "loadlist \"#{file}\" #{switch}"
     end
 
     # When more than one source is available it selects the next/previous one.
