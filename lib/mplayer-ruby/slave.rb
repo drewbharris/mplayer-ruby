@@ -18,10 +18,8 @@ module MPlayer
       options[:path] ||= 'mplayer'
       @file = file
 
-      mplayer_options = "-slave -quiet"
-      mplayer_options += " -vf screenshot" if options[:screenshot]
+      mplayer = invocation(options)
 
-      mplayer = "#{options[:path]} #{mplayer_options} \"#{@file}\""
       @pid,@stdin,@stdout,@stderr = Open4.popen4(mplayer)
       until @stdout.gets.inspect =~ /playback/ do
       end #fast forward past mplayer's initial output
@@ -39,6 +37,18 @@ module MPlayer
     end
 
     private
+
+    # Command line string to invoke mplayer
+    # @param [Hash] options
+    # @option options [Boolean] :screenshot Whether to enable screenshots
+    # @return [String]
+    def invocation(options = {})
+      path = options[:path] || "mplayer"
+      command = "#{path} -slave -quiet "
+      command += "-vf screenshot " if options[:screenshot]
+      command += "\"#{@file}\""
+      command
+    end
 
     def select_cycle(command,value,match = //)
       switch = case value
