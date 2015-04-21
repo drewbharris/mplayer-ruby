@@ -40,12 +40,14 @@ module MPlayer
 
     # Command line string to invoke mplayer
     # @param [Hash] options
+    # @option options [Boolean] :fullscreen Whether to start in fullscreen
     # @option options [String] :options Arbitrary command line options
     # @option options [Boolean] :screenshot Whether to enable screenshots
     # @return [String]
     def invocation(options = {})
       path = options[:path] || "mplayer"
       command = "#{path} -slave -quiet "
+      command += "-fs " if options[:fullscreen]
       command += "-vf screenshot " if options[:screenshot]
       command += "#{options[:options]} " unless options[:options].nil?
       command += "\"#{@file}\""
