@@ -30,6 +30,14 @@ context "MPlayer::Player for URL" do
   asserts_topic.assigns(:stderr)
 end
 
+context "MPlayer::Player with fullscreen enabled" do
+  setup do
+    mock(Open4).popen4('mplayer -slave -quiet -fs "test/test.mp3"') { [true,true,true,true] }
+    stub(true).gets { "playback" }
+  end
+  asserts("new :fullscreen") { MPlayer::Slave.new('test/test.mp3', :fullscreen => true) }
+end
+
 context "MPlayer::Player with screenshots enabled" do
   setup do
     mock(Open4).popen4('mplayer -slave -quiet -vf screenshot "test/test.mp3"') { [true,true,true,true] }
