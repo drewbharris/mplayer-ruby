@@ -15,26 +15,25 @@ See [examples/](http://github.com/petems/mplayer-ruby/tree/master/examples/) for
 #### Linux
 
     $ sudo apt-get install mplayer
-    
+
 #### Mac OS X
 
 ##### via Homebrew
 
     $ brew install mplayer
-    
+
 ### MPlayer-ruby
 
-   $ gem install mplayer-ruby
-
+    $ gem install mplayer-ruby
 
 ## TODO
-* Complete Slave Protocol 
-* Complete Other Functionalities 
+* Complete Slave Protocol
+* Complete Other Functionalities
 * Create a Better README
 * Example Usages
 
 ## Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
