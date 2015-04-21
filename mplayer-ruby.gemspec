@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name             = "mplayer-ruby"
-  gem.version          = "0.1.0"
+  gem.version          = "0.2.0"
   gem.date             = %q{2010-02-01}
   gem.authors          = ["Arthur Chiu"]
   gem.email            = %q{mr.arthur.chiu@gmail.com}
