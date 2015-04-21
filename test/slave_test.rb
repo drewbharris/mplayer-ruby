@@ -30,6 +30,14 @@ context "MPlayer::Player for URL" do
   asserts_topic.assigns(:stderr)
 end
 
+context "MPlayer::Player with arbitrary options" do
+  setup do
+    mock(Open4).popen4('mplayer -slave -quiet -something "test/test.mp3"') { [true,true,true,true] }
+    stub(true).gets { "playback" }
+  end
+  asserts("new :arbitrary") { MPlayer::Slave.new('test/test.mp3', :options => "-something") }
+end
+
 context "MPlayer::Player with screenshots enabled" do
   setup do
     mock(Open4).popen4('mplayer -slave -quiet -vf screenshot "test/test.mp3"') { [true,true,true,true] }
