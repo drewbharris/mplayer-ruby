@@ -38,6 +38,14 @@ context "MPlayer::Player with arbitrary options" do
   asserts("new :arbitrary") { MPlayer::Slave.new('test/test.mp3', :options => "-something") }
 end
 
+context "MPlayer::Player with fullscreen enabled" do
+  setup do
+    mock(Open4).popen4('mplayer -slave -quiet -fs "test/test.mp3"') { [true,true,true,true] }
+    stub(true).gets { "playback" }
+  end
+  asserts("new :fullscreen") { MPlayer::Slave.new('test/test.mp3', :fullscreen => true) }
+end
+
 context "MPlayer::Player with screenshots enabled" do
   setup do
     mock(Open4).popen4('mplayer -slave -quiet -vf screenshot "test/test.mp3"') { [true,true,true,true] }
