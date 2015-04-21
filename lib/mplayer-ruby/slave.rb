@@ -19,6 +19,7 @@ module MPlayer
       @file = file
 
       mplayer_options = "-slave -quiet"
+      mplayer_options += " -fs" if options[:fullscreen]
       mplayer_options += " -vf screenshot" if options[:screenshot]
 
       mplayer = "#{options[:path]} #{mplayer_options} \"#{@file}\""
