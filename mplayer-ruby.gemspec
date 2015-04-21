@@ -24,5 +24,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rake", "~> 10.1.0"
   gem.add_development_dependency "riot", "~> 0.12.6"
   gem.add_development_dependency "rr", "~> 1.1.2"
+  gem.add_development_dependency "rdoc"
 
 end
