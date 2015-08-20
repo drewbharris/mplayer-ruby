@@ -11,10 +11,7 @@ module MPlayer
     # Initializes a new instance of MPlayer.
     # set :path to point to the location of mplayer
     # defaults to '/usr/bin/mplayer'
-    def initialize(file = "",options ={})
-      unless File.exists?(file) || URI::regexp.match(file)
-        raise ArgumentError,"Invalid File"
-      end
+    def initialize(file = nil,options ={})
       options[:path] ||= 'mplayer'
       @file = file
 
@@ -46,11 +43,13 @@ module MPlayer
     # @return [String]
     def invocation(options = {})
       path = options[:path] || "mplayer"
-      command = "#{path} -slave -quiet "
+      command = "#{path} -slave -quiet -idle"
       command += "-fs " if options[:fullscreen]
       command += "-vf screenshot " if options[:screenshot]
       command += "#{options[:options]} " unless options[:options].nil?
-      command += "\"#{@file}\""
+
+      command += "\"#{@file}\"" if @file
+      
       command
     end
 
